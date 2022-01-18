@@ -10,5 +10,5 @@ Need v1.18beta1+
 ## Test
 
 ```go
-go1.18beta1 test ./...
+go1.18beta1 test
 ```
