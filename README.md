@@ -7,6 +7,20 @@ Generic functions for Slice of Golang.
 
 Need v1.18beta1+
 
+## TodoList
+
+- [x] Each
+- [x] Every
+- [x] Filter
+- [x] Map
+- [x] Some
+- [ ] Find
+- [ ] FindIndex
+- [ ] IndexOf
+- [ ] LastIndexOf
+- [ ] Reverse
+- [ ] Sort
+
 ## Test
 
 ```go
