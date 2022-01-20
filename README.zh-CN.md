@@ -118,7 +118,7 @@ hasEven := glist.Some([]int{5, 6, 7}, func(t, i int) bool {
 对 `slice` 的每个元素执行一次给定的函数。
 
 ```go
-ForEach([]int{1, 2, 3}, func(t int, i int) {
+glist.ForEach([]int{1, 2, 3}, func(t int, i int) {
     println(t)
 })
 
@@ -129,7 +129,7 @@ ForEach([]int{1, 2, 3}, func(t int, i int) {
 创建一个新 `slice` ，其结果是该 `slice` 中的每个元素是调用一次提供的函数后的返回值。
 
 ```go
-list := Map([]int{5, 6, 7}, func(t int, i int) string {
+list := glist.Map([]int{5, 6, 7}, func(t int, i int) string {
     return strconv.Itoa(t)
 })
 // ["5" "6" "7"]
@@ -140,7 +140,7 @@ list := Map([]int{5, 6, 7}, func(t int, i int) string {
 创建一个新 `slice` , 其包含通过所提供函数实现的测试的所有元素。
 
 ```go
-list = Filter([]int{1, 2, 3, 4, 5, 6, 7, 8}, func(t, i int) bool {
+list = glist.Filter([]int{1, 2, 3, 4, 5, 6, 7, 8}, func(t, i int) bool {
     return t%2 == 0
 })
 // [2 4 6 8]
@@ -151,7 +151,7 @@ list = Filter([]int{1, 2, 3, 4, 5, 6, 7, 8}, func(t, i int) bool {
 对 `slice` 中的每个元素执行一个由您提供的 reducer 函数(升序执行)，将其结果汇总为单个返回值。
 
 ```go
-sum := Reduce([]int{1, 2, 3}, func(r int, t int, i int) int {
+sum := glist.Reduce([]int{1, 2, 3}, func(r int, t int, i int) int {
     return r + t
 }, 0)
 // 6
@@ -162,7 +162,7 @@ sum := Reduce([]int{1, 2, 3}, func(r int, t int, i int) int {
 返回 `slice` 中满足提供的测试函数的第一个元素的索引。若没有找到对应元素则返回-1。
 
 ```go
-index := FindIndex([]int{1, 2, 3}, func(t, i int) bool {
+index := glist.FindIndex([]int{1, 2, 3}, func(t, i int) bool {
     return t%2 == 0
 })
 // 1
@@ -173,7 +173,7 @@ index := FindIndex([]int{1, 2, 3}, func(t, i int) bool {
 返回 `slice` 中满足提供的测试函数的第一个元素的值。
 
 ```go
-item, err := Find([]int{1, 2, 3}, func(t, i int) bool {
+item, err := glist.Find([]int{1, 2, 3}, func(t, i int) bool {
     return t%2 == 0
 })
 

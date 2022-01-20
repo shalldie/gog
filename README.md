@@ -118,7 +118,7 @@ hasEven := glist.Some([]int{5, 6, 7}, func(t, i int) bool {
 Performs the specified action for each element in a slice.
 
 ```go
-ForEach([]int{1, 2, 3}, func(t int, i int) {
+glist.ForEach([]int{1, 2, 3}, func(t int, i int) {
     println(t)
 })
 
@@ -129,7 +129,7 @@ ForEach([]int{1, 2, 3}, func(t int, i int) {
 Calls a defined callback function on each element of a slice, and returns a slice that contains the results.
 
 ```go
-list := Map([]int{5, 6, 7}, func(t int, i int) string {
+list := glist.Map([]int{5, 6, 7}, func(t int, i int) string {
     return strconv.Itoa(t)
 })
 // ["5" "6" "7"]
@@ -140,7 +140,7 @@ list := Map([]int{5, 6, 7}, func(t int, i int) string {
 Returns the elements of a slice that meet the condition specified in a callback function.
 
 ```go
-list = Filter([]int{1, 2, 3, 4, 5, 6, 7, 8}, func(t, i int) bool {
+list = glist.Filter([]int{1, 2, 3, 4, 5, 6, 7, 8}, func(t, i int) bool {
     return t%2 == 0
 })
 // [2 4 6 8]
@@ -151,7 +151,7 @@ list = Filter([]int{1, 2, 3, 4, 5, 6, 7, 8}, func(t, i int) bool {
 Calls the specified callback function for all the elements in a slice. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 
 ```go
-sum := Reduce([]int{1, 2, 3}, func(r int, t int, i int) int {
+sum := glist.Reduce([]int{1, 2, 3}, func(r int, t int, i int) int {
     return r + t
 }, 0)
 // 6
@@ -162,7 +162,7 @@ sum := Reduce([]int{1, 2, 3}, func(r int, t int, i int) int {
 Returns the index of the first element in the slice that satisfies the provided testing function. Otherwise, it returns -1
 
 ```go
-index := FindIndex([]int{1, 2, 3}, func(t, i int) bool {
+index := glist.FindIndex([]int{1, 2, 3}, func(t, i int) bool {
     return t%2 == 0
 })
 // 1
@@ -173,7 +173,7 @@ index := FindIndex([]int{1, 2, 3}, func(t, i int) bool {
 Returns the value of the first element in the provided slice that satisfies the provided testing function.
 
 ```go
-item, err := Find([]int{1, 2, 3}, func(t, i int) bool {
+item, err := glist.Find([]int{1, 2, 3}, func(t, i int) bool {
     return t%2 == 0
 })
 
