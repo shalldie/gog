@@ -1,7 +1,7 @@
-# glist
+# gs
 
-[![Build Status](https://img.shields.io/github/workflow/status/shalldie/glist/ci?label=test&logo=github&style=flat-square)](https://github.com/shalldie/glist/actions)
-[![License](https://img.shields.io/github/license/shalldie/glist?logo=github&style=flat-square)](https://github.com/shalldie/glist)
+[![Build Status](https://img.shields.io/github/workflow/status/shalldie/gs/ci?label=test&logo=github&style=flat-square)](https://github.com/shalldie/gs/actions)
+[![License](https://img.shields.io/github/license/shalldie/gs?logo=github&style=flat-square)](https://github.com/shalldie/gs)
 
 Generic functions for Slice of Golang. Golang 切片的常用泛型方法。
 
@@ -12,7 +12,7 @@ Generic functions for Slice of Golang. Golang 切片的常用泛型方法。
 ## 安装
 
 ```bash
-$ go get github.com/shalldie/glist
+go get github.com/shalldie/gs
 ```
 
 ## 目录
@@ -40,7 +40,7 @@ $ go get github.com/shalldie/glist
 从一个 `slice` 复制所有元素到一个新的 `slice`。
 
 ```go
-newlist := glist.Copy([]int{1})
+newlist := gs.Copy([]int{1})
 ```
 
 ### Reverse
@@ -48,7 +48,7 @@ newlist := glist.Copy([]int{1})
 将 `slice` 中元素的位置颠倒，并返回新 `slice`。
 
 ```go
-newlist := glist.Reverse([]int{1, 2, 3})
+newlist := gs.Reverse([]int{1, 2, 3})
 // [3 2 1]
 ```
 
@@ -57,7 +57,7 @@ newlist := glist.Reverse([]int{1, 2, 3})
 返回排序后的新 `slice`。
 
 ```go
-newlist = glist.Sort([]int{2, 5, 1, 3, 4, 5}, func(t1, t2 int) bool {
+newlist = gs.Sort([]int{2, 5, 1, 3, 4, 5}, func(t1, t2 int) bool {
     return t1 < t2
 })
 // [1 2 3 4 5 5]
@@ -70,10 +70,10 @@ newlist = glist.Sort([]int{2, 5, 1, 3, 4, 5}, func(t1, t2 int) bool {
 ```go
 list := []int{1, 2, 3, 2}
 
-index2 := glist.IndexOf(list, 2)
+index2 := gs.IndexOf(list, 2)
 // 1
 
-index5 := glist.IndexOf(list, 5)
+index5 := gs.IndexOf(list, 5)
 // -1
 ```
 
@@ -84,10 +84,10 @@ index5 := glist.IndexOf(list, 5)
 ```go
 list := []int{1, 2, 3, 2}
 
-index2 := glist.LastIndexOf(list, 2)
+index2 := gs.LastIndexOf(list, 2)
 // 3
 
-index5 := glist.LastIndexOf(list, 5)
+index5 := gs.LastIndexOf(list, 5)
 // -1
 ```
 
@@ -96,7 +96,7 @@ index5 := glist.LastIndexOf(list, 5)
 测试一个 `slice` 内的所有元素是否都能通过某个指定函数的测试。
 
 ```go
-allless4 := glist.Every([]int{1, 2, 3}, func(t, i int) bool {
+allless4 := gs.Every([]int{1, 2, 3}, func(t, i int) bool {
     return t < 4
 })
 // true
@@ -107,7 +107,7 @@ allless4 := glist.Every([]int{1, 2, 3}, func(t, i int) bool {
 测试 `slice` 中是不是至少有 1 个元素通过了被提供的函数测试。
 
 ```go
-hasEven := glist.Some([]int{5, 6, 7}, func(t, i int) bool {
+hasEven := gs.Some([]int{5, 6, 7}, func(t, i int) bool {
     return t%2 == 0
 })
 // true
@@ -118,7 +118,7 @@ hasEven := glist.Some([]int{5, 6, 7}, func(t, i int) bool {
 对 `slice` 的每个元素执行一次给定的函数。
 
 ```go
-glist.ForEach([]int{1, 2, 3}, func(t int, i int) {
+gs.ForEach([]int{1, 2, 3}, func(t int, i int) {
     println(t)
 })
 
@@ -129,7 +129,7 @@ glist.ForEach([]int{1, 2, 3}, func(t int, i int) {
 创建一个新 `slice` ，其结果是该 `slice` 中的每个元素是调用一次提供的函数后的返回值。
 
 ```go
-list := glist.Map([]int{5, 6, 7}, func(t int, i int) string {
+list := gs.Map([]int{5, 6, 7}, func(t int, i int) string {
     return strconv.Itoa(t)
 })
 // ["5" "6" "7"]
@@ -140,7 +140,7 @@ list := glist.Map([]int{5, 6, 7}, func(t int, i int) string {
 创建一个新 `slice` , 其包含通过所提供函数实现的测试的所有元素。
 
 ```go
-list = glist.Filter([]int{1, 2, 3, 4, 5, 6, 7, 8}, func(t, i int) bool {
+list = gs.Filter([]int{1, 2, 3, 4, 5, 6, 7, 8}, func(t, i int) bool {
     return t%2 == 0
 })
 // [2 4 6 8]
@@ -151,7 +151,7 @@ list = glist.Filter([]int{1, 2, 3, 4, 5, 6, 7, 8}, func(t, i int) bool {
 对 `slice` 中的每个元素执行一个由您提供的 reducer 函数(升序执行)，将其结果汇总为单个返回值。
 
 ```go
-sum := glist.Reduce([]int{1, 2, 3}, func(r int, t int, i int) int {
+sum := gs.Reduce([]int{1, 2, 3}, func(r int, t int, i int) int {
     return r + t
 }, 0)
 // 6
@@ -162,7 +162,7 @@ sum := glist.Reduce([]int{1, 2, 3}, func(r int, t int, i int) int {
 返回 `slice` 中满足提供的测试函数的第一个元素的索引。若没有找到对应元素则返回-1。
 
 ```go
-index := glist.FindIndex([]int{1, 2, 3}, func(t, i int) bool {
+index := gs.FindIndex([]int{1, 2, 3}, func(t, i int) bool {
     return t%2 == 0
 })
 // 1
@@ -173,7 +173,7 @@ index := glist.FindIndex([]int{1, 2, 3}, func(t, i int) bool {
 返回 `slice` 中满足提供的测试函数的第一个元素的值。
 
 ```go
-item, err := glist.Find([]int{1, 2, 3}, func(t, i int) bool {
+item, err := gs.Find([]int{1, 2, 3}, func(t, i int) bool {
     return t%2 == 0
 })
 

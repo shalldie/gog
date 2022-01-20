@@ -1,7 +1,7 @@
-# glist
+# gs
 
-[![Build Status](https://img.shields.io/github/workflow/status/shalldie/glist/ci?label=test&logo=github&style=flat-square)](https://github.com/shalldie/glist/actions)
-[![License](https://img.shields.io/github/license/shalldie/glist?logo=github&style=flat-square)](https://github.com/shalldie/glist)
+[![Build Status](https://img.shields.io/github/workflow/status/shalldie/gs/ci?label=test&logo=github&style=flat-square)](https://github.com/shalldie/gs/actions)
+[![License](https://img.shields.io/github/license/shalldie/gs?logo=github&style=flat-square)](https://github.com/shalldie/gs)
 
 Generic functions for Slice of Golang. Golang 切片的常用泛型方法。
 
@@ -12,7 +12,7 @@ Need v1.18+
 ## Installation
 
 ```bash
-$ go get github.com/shalldie/glist
+go get github.com/shalldie/gs
 ```
 
 ## Contents
@@ -40,7 +40,7 @@ All functions are `immutable`.
 Copies elements from a source slice into a new slice.
 
 ```go
-newlist := glist.Copy([]int{1})
+newlist := gs.Copy([]int{1})
 ```
 
 ### Reverse
@@ -48,7 +48,7 @@ newlist := glist.Copy([]int{1})
 Reverses the elements into a new slice.
 
 ```go
-newlist := glist.Reverse([]int{1, 2, 3})
+newlist := gs.Reverse([]int{1, 2, 3})
 // [3 2 1]
 ```
 
@@ -57,7 +57,7 @@ newlist := glist.Reverse([]int{1, 2, 3})
 Sort a slice into a new slice.
 
 ```go
-newlist = glist.Sort([]int{2, 5, 1, 3, 4, 5}, func(t1, t2 int) bool {
+newlist = gs.Sort([]int{2, 5, 1, 3, 4, 5}, func(t1, t2 int) bool {
     return t1 < t2
 })
 // [1 2 3 4 5 5]
@@ -70,10 +70,10 @@ Returns the index of the first occurrence of a value in a slice, or -1 if it is 
 ```go
 list := []int{1, 2, 3, 2}
 
-index2 := glist.IndexOf(list, 2)
+index2 := gs.IndexOf(list, 2)
 // 1
 
-index5 := glist.IndexOf(list, 5)
+index5 := gs.IndexOf(list, 5)
 // -1
 ```
 
@@ -84,10 +84,10 @@ Returns the index of the last occurrence of a specified value in a slice, or -1 
 ```go
 list := []int{1, 2, 3, 2}
 
-index2 := glist.LastIndexOf(list, 2)
+index2 := gs.LastIndexOf(list, 2)
 // 3
 
-index5 := glist.LastIndexOf(list, 5)
+index5 := gs.LastIndexOf(list, 5)
 // -1
 ```
 
@@ -96,7 +96,7 @@ index5 := glist.LastIndexOf(list, 5)
 Determines whether all the members of a slice satisfy the specified test.
 
 ```go
-allless4 := glist.Every([]int{1, 2, 3}, func(t, i int) bool {
+allless4 := gs.Every([]int{1, 2, 3}, func(t, i int) bool {
     return t < 4
 })
 // true
@@ -107,7 +107,7 @@ allless4 := glist.Every([]int{1, 2, 3}, func(t, i int) bool {
 Determines whether the specified callback function returns true for any element of a slice.
 
 ```go
-hasEven := glist.Some([]int{5, 6, 7}, func(t, i int) bool {
+hasEven := gs.Some([]int{5, 6, 7}, func(t, i int) bool {
     return t%2 == 0
 })
 // true
@@ -118,7 +118,7 @@ hasEven := glist.Some([]int{5, 6, 7}, func(t, i int) bool {
 Performs the specified action for each element in a slice.
 
 ```go
-glist.ForEach([]int{1, 2, 3}, func(t int, i int) {
+gs.ForEach([]int{1, 2, 3}, func(t int, i int) {
     println(t)
 })
 
@@ -129,7 +129,7 @@ glist.ForEach([]int{1, 2, 3}, func(t int, i int) {
 Calls a defined callback function on each element of a slice, and returns a slice that contains the results.
 
 ```go
-list := glist.Map([]int{5, 6, 7}, func(t int, i int) string {
+list := gs.Map([]int{5, 6, 7}, func(t int, i int) string {
     return strconv.Itoa(t)
 })
 // ["5" "6" "7"]
@@ -140,7 +140,7 @@ list := glist.Map([]int{5, 6, 7}, func(t int, i int) string {
 Returns the elements of a slice that meet the condition specified in a callback function.
 
 ```go
-list = glist.Filter([]int{1, 2, 3, 4, 5, 6, 7, 8}, func(t, i int) bool {
+list = gs.Filter([]int{1, 2, 3, 4, 5, 6, 7, 8}, func(t, i int) bool {
     return t%2 == 0
 })
 // [2 4 6 8]
@@ -151,7 +151,7 @@ list = glist.Filter([]int{1, 2, 3, 4, 5, 6, 7, 8}, func(t, i int) bool {
 Calls the specified callback function for all the elements in a slice. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 
 ```go
-sum := glist.Reduce([]int{1, 2, 3}, func(r int, t int, i int) int {
+sum := gs.Reduce([]int{1, 2, 3}, func(r int, t int, i int) int {
     return r + t
 }, 0)
 // 6
@@ -162,7 +162,7 @@ sum := glist.Reduce([]int{1, 2, 3}, func(r int, t int, i int) int {
 Returns the index of the first element in the slice that satisfies the provided testing function. Otherwise, it returns -1
 
 ```go
-index := glist.FindIndex([]int{1, 2, 3}, func(t, i int) bool {
+index := gs.FindIndex([]int{1, 2, 3}, func(t, i int) bool {
     return t%2 == 0
 })
 // 1
@@ -173,7 +173,7 @@ index := glist.FindIndex([]int{1, 2, 3}, func(t, i int) bool {
 Returns the value of the first element in the provided slice that satisfies the provided testing function.
 
 ```go
-item, err := glist.Find([]int{1, 2, 3}, func(t, i int) bool {
+item, err := gs.Find([]int{1, 2, 3}, func(t, i int) bool {
     return t%2 == 0
 })
 

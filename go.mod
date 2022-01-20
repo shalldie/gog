@@ -1,4 +1,4 @@
-module github.com/shalldie/glist
+module github.com/shalldie/gs
 
 go 1.18
 

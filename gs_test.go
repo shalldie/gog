@@ -1,4 +1,4 @@
-package glist
+package gs
 
 import (
 	"strconv"
