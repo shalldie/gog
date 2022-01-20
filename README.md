@@ -1,6 +1,7 @@
 # gs
 
-[![Build Status](https://img.shields.io/github/workflow/status/shalldie/gs/ci?label=test&logo=github&style=flat-square)](https://github.com/shalldie/gs/actions)
+[![Go Version](https://img.shields.io/github/go-mod/go-version/shalldie/gs?logo=go&style=flat-square)](https://github.com/shalldie/gs)
+[![Build Status](https://img.shields.io/github/workflow/status/shalldie/gs/ci?label=Test&logo=github&style=flat-square)](https://github.com/shalldie/gs/actions)
 [![License](https://img.shields.io/github/license/shalldie/gs?logo=github&style=flat-square)](https://github.com/shalldie/gs)
 
 Generic functions for Slice of Golang. Golang 切片的常用泛型方法。
