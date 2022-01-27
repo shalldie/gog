@@ -1,4 +1,4 @@
-module github.com/shalldie/gs
+module github.com/shalldie/gog
 
 go 1.18
 

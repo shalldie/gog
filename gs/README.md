@@ -1,22 +1,23 @@
 # gs
 
-[![Go Version](https://img.shields.io/github/go-mod/go-version/shalldie/gs?label=go&logo=go&style=flat-square)](https://github.com/shalldie/gs)
-[![Build Status](https://img.shields.io/github/workflow/status/shalldie/gs/ci?label=test&logo=github&style=flat-square)](https://github.com/shalldie/gs/actions)
-[![License](https://img.shields.io/github/license/shalldie/gs?logo=github&style=flat-square)](https://github.com/shalldie/gs)
+[![Go Reference](https://pkg.go.dev/badge/github.com/shalldie/gog.svg)](https://pkg.go.dev/github.com/shalldie/gog)
+[![Go Version](https://img.shields.io/github/go-mod/go-version/shalldie/gog?label=go&logo=go&style=flat-square)](https://github.com/shalldie/gog)
+[![Build Status](https://img.shields.io/github/workflow/status/shalldie/gog/ci?label=test&logo=github&style=flat-square)](https://github.com/shalldie/gog/actions)
+[![License](https://img.shields.io/github/license/shalldie/gog?logo=github&style=flat-square)](https://github.com/shalldie/gog)
 
 Generic functions for Slice of Golang. Golang 切片的常用泛型方法。
 
 [English](./README.md) | [中文](./README.zh-CN.md)
 
-需要 v1.18+
+Need v1.18+
 
-## 安装
+## Installation
 
 ```bash
-go get github.com/shalldie/gs
+go get github.com/shalldie/gog/gs
 ```
 
-## 目录
+## Index
 
 - [x] [Copy](#Copy)
 - [x] [Reverse](#Reverse)
@@ -32,13 +33,13 @@ go get github.com/shalldie/gs
 - [x] [FindIndex](#FindIndex)
 - [x] [Find](#Find)
 
-## 方法
+## Functions
 
-所有方法都是 `immutable` 的.
+All functions are `immutable`.
 
 ### Copy
 
-从一个 `slice` 复制所有元素到一个新的 `slice`。
+Copies elements from a source slice into a new slice.
 
 ```go
 newlist := gs.Copy([]int{1})
@@ -46,7 +47,7 @@ newlist := gs.Copy([]int{1})
 
 ### Reverse
 
-将 `slice` 中元素的位置颠倒，并返回新 `slice`。
+Reverses the elements into a new slice.
 
 ```go
 newlist := gs.Reverse([]int{1, 2, 3})
@@ -55,7 +56,7 @@ newlist := gs.Reverse([]int{1, 2, 3})
 
 ### Sort
 
-返回排序后的新 `slice`。
+Sort a slice into a new slice.
 
 ```go
 newlist = gs.Sort([]int{2, 5, 1, 3, 4, 5}, func(t1, t2 int) bool {
@@ -66,7 +67,7 @@ newlist = gs.Sort([]int{2, 5, 1, 3, 4, 5}, func(t1, t2 int) bool {
 
 ### IndexOf
 
-返回在 `slice` 中可以找到一个给定元素的第一个索引，如果不存在，则返回-1。
+Returns the index of the first occurrence of a value in a slice, or -1 if it is not present.
 
 ```go
 list := []int{1, 2, 3, 2}
@@ -80,7 +81,7 @@ index5 := gs.IndexOf(list, 5)
 
 ### LastIndexOf
 
-返回指定元素在 `slice` 中的最后一个的索引，如果不存在则返回 -1。
+Returns the index of the last occurrence of a specified value in a slice, or -1 if it is not present.
 
 ```go
 list := []int{1, 2, 3, 2}
@@ -94,7 +95,7 @@ index5 := gs.LastIndexOf(list, 5)
 
 ### Every
 
-测试一个 `slice` 内的所有元素是否都能通过某个指定函数的测试。
+Determines whether all the members of a slice satisfy the specified test.
 
 ```go
 allless4 := gs.Every([]int{1, 2, 3}, func(t, i int) bool {
@@ -105,7 +106,7 @@ allless4 := gs.Every([]int{1, 2, 3}, func(t, i int) bool {
 
 ### Some
 
-测试 `slice` 中是不是至少有 1 个元素通过了被提供的函数测试。
+Determines whether the specified callback function returns true for any element of a slice.
 
 ```go
 hasEven := gs.Some([]int{5, 6, 7}, func(t, i int) bool {
@@ -116,7 +117,7 @@ hasEven := gs.Some([]int{5, 6, 7}, func(t, i int) bool {
 
 ### ForEach
 
-对 `slice` 的每个元素执行一次给定的函数。
+Performs the specified action for each element in a slice.
 
 ```go
 gs.ForEach([]int{1, 2, 3}, func(t int, i int) {
@@ -127,7 +128,7 @@ gs.ForEach([]int{1, 2, 3}, func(t int, i int) {
 
 ### Map
 
-创建一个新 `slice` ，其结果是该 `slice` 中的每个元素是调用一次提供的函数后的返回值。
+Calls a defined callback function on each element of a slice, and returns a slice that contains the results.
 
 ```go
 list := gs.Map([]int{5, 6, 7}, func(t int, i int) string {
@@ -138,7 +139,7 @@ list := gs.Map([]int{5, 6, 7}, func(t int, i int) string {
 
 ### Filter
 
-创建一个新 `slice` , 其包含通过所提供函数实现的测试的所有元素。
+Returns the elements of a slice that meet the condition specified in a callback function.
 
 ```go
 list = gs.Filter([]int{1, 2, 3, 4, 5, 6, 7, 8}, func(t, i int) bool {
@@ -149,7 +150,7 @@ list = gs.Filter([]int{1, 2, 3, 4, 5, 6, 7, 8}, func(t, i int) bool {
 
 ### Reduce
 
-对 `slice` 中的每个元素执行一个由您提供的 reducer 函数(升序执行)，将其结果汇总为单个返回值。
+Calls the specified callback function for all the elements in a slice. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 
 ```go
 sum := gs.Reduce([]int{1, 2, 3}, func(r int, t int, i int) int {
@@ -160,7 +161,7 @@ sum := gs.Reduce([]int{1, 2, 3}, func(r int, t int, i int) int {
 
 ## FindIndex
 
-返回 `slice` 中满足提供的测试函数的第一个元素的索引。若没有找到对应元素则返回-1。
+Returns the index of the first element in the slice that satisfies the provided testing function. Otherwise, it returns -1
 
 ```go
 index := gs.FindIndex([]int{1, 2, 3}, func(t, i int) bool {
@@ -171,7 +172,7 @@ index := gs.FindIndex([]int{1, 2, 3}, func(t, i int) bool {
 
 ## Find
 
-返回 `slice` 中满足提供的测试函数的第一个元素的值。
+Returns the value of the first element in the provided slice that satisfies the provided testing function.
 
 ```go
 item, err := gs.Find([]int{1, 2, 3}, func(t, i int) bool {
