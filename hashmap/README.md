@@ -36,7 +36,17 @@ go get github.com/shalldie/gog/hashmap
 ## Index
 
 - [type HashMap](#type-HashMap)
-  - [func New[K comparable, V comparable]() \*HashMap[K, V]](#func-New)
+  - [func New\[K comparable, V comparable\]() \*HashMap\[K, V\]](#func-New)
+  - [func (hash \*HashMap[K, V]) Has(key K) bool](#func-Has)
+  - [func (hash \*HashMap[K, V]) Set(key K, val V)](#func-Set)
+  - [func (hash \*HashMap[K, V]) Get(key K) V](#func-Get)
+  - [func (hash \*HashMap[K, V]) Delete(key K)](#func-Delete)
+  - [func (hash \*HashMap[K, V]) Keys() []K](#func-Keys)
+  - [func (hash \*HashMap[K, V]) Values() []V](#func-Values)
+  - [func (hash \*HashMap[K, V]) Size() int](#func-Size)
+  - [func (hash \*HashMap[K, V]) ForEach(action func(K, V))](#func-ForEach)
+  - [func (hash \*HashMap[K, V]) Clear()](#func-Clear)
+  - [func (hash \*HashMap[K, V]) Clone() \*HashMap[K, V]](#func-Clone)
 
 ### type HashMap
 
