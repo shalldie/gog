@@ -29,6 +29,10 @@ func Sort[T comparable](list []T, less func(T, T) bool) []T {
 	return list
 }
 
+func Contains[T comparable](list []T, item T) bool {
+	return IndexOf(list, item) > -1
+}
+
 func IndexOf[T comparable](list []T, item T) int {
 	for index, cur := range list {
 		if cur == item {
