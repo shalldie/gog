@@ -10,61 +10,61 @@ func New[K comparable, V comparable]() *HashMap[K, V] {
 	}
 }
 
-func (hash *HashMap[K, V]) Has(key K) bool {
-	_, has := hash.m[key]
+func (hm *HashMap[K, V]) Has(key K) bool {
+	_, has := hm.m[key]
 	return has
 }
 
-func (hash *HashMap[K, V]) Set(key K, val V) {
-	hash.m[key] = val
+func (hm *HashMap[K, V]) Set(key K, val V) {
+	hm.m[key] = val
 }
 
-func (hash *HashMap[K, V]) Get(key K) V {
-	return hash.m[key]
+func (hm *HashMap[K, V]) Get(key K) V {
+	return hm.m[key]
 }
 
-func (hash *HashMap[K, V]) Delete(key K) {
-	delete(hash.m, key)
+func (hm *HashMap[K, V]) Delete(key K) {
+	delete(hm.m, key)
 }
 
-func (hash *HashMap[K, V]) Keys() []K {
-	keys := make([]K, hash.Size())
+func (hm *HashMap[K, V]) Keys() []K {
+	keys := make([]K, hm.Size())
 	index := 0
-	hash.ForEach(func(k K, v V) {
+	hm.ForEach(func(k K, v V) {
 		keys[index] = k
 		index += 1
 	})
 	return keys
 }
 
-func (hash *HashMap[K, V]) Values() []V {
-	vals := make([]V, hash.Size())
+func (hm *HashMap[K, V]) Values() []V {
+	vals := make([]V, hm.Size())
 	index := 0
-	hash.ForEach(func(k K, v V) {
+	hm.ForEach(func(k K, v V) {
 		vals[index] = v
 		index += 1
 	})
 	return vals
 }
 
-func (hash *HashMap[K, V]) Size() int {
-	return len(hash.m)
+func (hm *HashMap[K, V]) Size() int {
+	return len(hm.m)
 }
 
-func (hash *HashMap[K, V]) ForEach(action func(K, V)) {
-	for key, val := range hash.m {
+func (hm *HashMap[K, V]) ForEach(action func(K, V)) {
+	for key, val := range hm.m {
 		action(key, val)
 	}
 }
 
-func (hash *HashMap[K, V]) Clear() {
-	hash.m = make(map[K]V)
+func (hm *HashMap[K, V]) Clear() {
+	hm.m = make(map[K]V)
 }
 
-func (hash *HashMap[K, V]) Clone() *HashMap[K, V] {
-	newhash := New[K, V]()
-	hash.ForEach(func(k K, v V) {
-		newhash.Set(k, v)
+func (hm *HashMap[K, V]) Clone() *HashMap[K, V] {
+	newhashmap := New[K, V]()
+	hm.ForEach(func(k K, v V) {
+		newhashmap.Set(k, v)
 	})
-	return newhash
+	return newhashmap
 }

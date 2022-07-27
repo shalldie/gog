@@ -7,9 +7,12 @@
 
 Generic hashset of Golang. Golang 泛型 hashset 实现。
 
+[English](./README.md) | [中文](./README.zh-CN.md)
+
 Need v1.18+
 
-## Example
+<details><summary>Example</summary>
+<p>
 
 ```go
 {
@@ -22,6 +25,9 @@ Need v1.18+
 	fmt.Println(hash.Has("name2")) // false
 }
 ```
+
+</p>
+</details>
 
 ## Installation
 

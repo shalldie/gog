@@ -6,15 +6,17 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestSetHas(t *testing.T) {
+func TestSetGetHas(t *testing.T) {
 	assert := assert.New(t)
 
 	hash := New[string, string]()
 	hash.Set("name", "tom")
 	hash.Set("name2", "tom")
 
+	assert.Equal((hash.Get("name")), "tom")
 	assert.True(hash.Has("name"))
 	assert.False(hash.Has("name2"))
+	assert.Equal(hash.Size(), 1)
 }
 
 func TestGetDelete(t *testing.T) {

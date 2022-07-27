@@ -6,60 +6,57 @@ import (
 )
 
 type HashSet[K comparable, V comparable] struct {
-	hash *hashmap.HashMap[K, V]
+	hm *hashmap.HashMap[K, V]
 }
 
 func New[K comparable, V comparable]() *HashSet[K, V] {
 	return &HashSet[K, V]{
-		hash: hashmap.New[K, V](),
+		hm: hashmap.New[K, V](),
 	}
 }
 
-func (hash *HashSet[K, V]) Has(key K) bool {
-	return hash.hash.Has(key)
+func (hs *HashSet[K, V]) Has(key K) bool {
+	return hs.hm.Has(key)
 }
 
-func (hash *HashSet[K, V]) Set(key K, val V) {
-	if !gs.Contains(hash.Values(), val) {
-		hash.hash.Set(key, val)
+func (hs *HashSet[K, V]) Set(key K, val V) {
+	if !gs.Contains(hs.Values(), val) {
+		hs.hm.Set(key, val)
 	}
 }
 
-func (hash *HashSet[K, V]) Get(key K) V {
-	return hash.hash.Get(key)
+func (hs *HashSet[K, V]) Get(key K) V {
+	return hs.hm.Get(key)
 }
 
-func (hash *HashSet[K, V]) Delete(key K) {
-	hash.hash.Delete(key)
+func (hs *HashSet[K, V]) Delete(key K) {
+	hs.hm.Delete(key)
 }
 
-func (hash *HashSet[K, V]) Keys() []K {
-	return hash.hash.Keys()
+func (hs *HashSet[K, V]) Keys() []K {
+	return hs.hm.Keys()
 }
 
-func (hash *HashSet[K, V]) Values() []V {
-	return hash.hash.Values()
+func (hs *HashSet[K, V]) Values() []V {
+	return hs.hm.Values()
 }
 
-func (hash *HashSet[K, V]) Size() int {
-	return hash.hash.Size()
+func (hs *HashSet[K, V]) Size() int {
+	return hs.hm.Size()
 }
 
-func (hash *HashSet[K, V]) ForEach(action func(K, V)) {
-	hash.hash.ForEach(action)
-	for _, key := range hash.Keys() {
-		action(key, hash.Get(key))
-	}
+func (hs *HashSet[K, V]) ForEach(action func(K, V)) {
+	hs.hm.ForEach(action)
 }
 
-func (hash *HashSet[K, V]) Clear() {
-	hash.hash.Clear()
+func (hs *HashSet[K, V]) Clear() {
+	hs.hm.Clear()
 }
 
-func (hash *HashSet[K, V]) Clone() *HashSet[K, V] {
-	newmap := New[K, V]()
-	hash.ForEach(func(k K, v V) {
-		newmap.Set(k, v)
+func (hs *HashSet[K, V]) Clone() *HashSet[K, V] {
+	newhashset := New[K, V]()
+	hs.ForEach(func(k K, v V) {
+		newhashset.Set(k, v)
 	})
-	return newmap
+	return newhashset
 }
