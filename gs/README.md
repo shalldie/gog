@@ -98,8 +98,8 @@ index5 := gs.LastIndexOf(list, 5)
 Determines whether all the members of a slice satisfy the specified test.
 
 ```go
-allless4 := gs.Every([]int{1, 2, 3}, func(t, i int) bool {
-    return t < 4
+allless4 := gs.Every([]int{1, 2, 3}, func(item, index int) bool {
+    return item < 4
 })
 // true
 ```
@@ -109,8 +109,8 @@ allless4 := gs.Every([]int{1, 2, 3}, func(t, i int) bool {
 Determines whether the specified callback function returns true for any element of a slice.
 
 ```go
-hasEven := gs.Some([]int{5, 6, 7}, func(t, i int) bool {
-    return t%2 == 0
+hasEven := gs.Some([]int{5, 6, 7}, func(item, index int) bool {
+    return item%2 == 0
 })
 // true
 ```
@@ -120,10 +120,9 @@ hasEven := gs.Some([]int{5, 6, 7}, func(t, i int) bool {
 Performs the specified action for each element in a slice.
 
 ```go
-gs.ForEach([]int{1, 2, 3}, func(t int, i int) {
-    println(t)
+gs.ForEach([]int{1, 2, 3}, func(item, index int) {
+    println(item)
 })
-
 ```
 
 ### Map
@@ -131,8 +130,8 @@ gs.ForEach([]int{1, 2, 3}, func(t int, i int) {
 Calls a defined callback function on each element of a slice, and returns a slice that contains the results.
 
 ```go
-list := gs.Map([]int{5, 6, 7}, func(t int, i int) string {
-    return strconv.Itoa(t)
+list := gs.Map([]int{5, 6, 7}, func(item, index int) string {
+    return strconv.Itoa(item)
 })
 // ["5" "6" "7"]
 ```
@@ -142,8 +141,8 @@ list := gs.Map([]int{5, 6, 7}, func(t int, i int) string {
 Returns the elements of a slice that meet the condition specified in a callback function.
 
 ```go
-list = gs.Filter([]int{1, 2, 3, 4, 5, 6, 7, 8}, func(t, i int) bool {
-    return t%2 == 0
+list = gs.Filter([]int{1, 2, 3, 4, 5, 6, 7, 8}, func(item, index int) bool {
+    return item%2 == 0
 })
 // [2 4 6 8]
 ```
@@ -153,8 +152,8 @@ list = gs.Filter([]int{1, 2, 3, 4, 5, 6, 7, 8}, func(t, i int) bool {
 Calls the specified callback function for all the elements in a slice. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
 
 ```go
-sum := gs.Reduce([]int{1, 2, 3}, func(r int, t int, i int) int {
-    return r + t
+sum := gs.Reduce([]int{1, 2, 3}, func(previousValue int, currentValue int, currentIndex int) int {
+    return previousValue + currentValue
 }, 0)
 // 6
 ```
@@ -164,8 +163,8 @@ sum := gs.Reduce([]int{1, 2, 3}, func(r int, t int, i int) int {
 Returns the index of the first element in the slice that satisfies the provided testing function. Otherwise, it returns -1
 
 ```go
-index := gs.FindIndex([]int{1, 2, 3}, func(t, i int) bool {
-    return t%2 == 0
+index := gs.FindIndex([]int{1, 2, 3}, func(item, index int) bool {
+    return item%2 == 0
 })
 // 1
 ```
@@ -175,12 +174,12 @@ index := gs.FindIndex([]int{1, 2, 3}, func(t, i int) bool {
 Returns the value of the first element in the provided slice that satisfies the provided testing function.
 
 ```go
-item, err := gs.Find([]int{1, 2, 3}, func(t, i int) bool {
-    return t%2 == 0
+target, err := gs.Find([]int{1, 2, 3}, func(item, index int) bool {
+    return item%2 == 0
 })
 
 if err != nil {
-    println(item)
+    println(target)
     // 2
 }
 ```

@@ -62,14 +62,14 @@ func TestEvery(t *testing.T) {
 	list := []int{1, 2, 3}
 
 	assert.True(
-		Every(list, func(t, i int) bool {
-			return t < 4
+		Every(list, func(item, index int) bool {
+			return item < 4
 		}),
 	)
 
 	assert.False(
-		Every(list, func(t, i int) bool {
-			return t < 3
+		Every(list, func(item, index int) bool {
+			return item < 3
 		}),
 	)
 }
