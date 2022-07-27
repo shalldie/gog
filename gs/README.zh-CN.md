@@ -35,7 +35,7 @@ go get github.com/shalldie/gog/gs
 
 ## 方法
 
-所有方法都是 `immutable` 的.
+所有方法都是 `immutable` 的。
 
 ### Copy
 
