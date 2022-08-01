@@ -19,8 +19,8 @@ Need v1.18+
     hash := hashmap.New[string, string]()
     hash.Set("name", "tom")
 
-	fmt.Println(hash.Get("name")) // "tom"
-	fmt.Println(hash.Has("name")) // true
+    fmt.Println(hash.Get("name")) // "tom"
+    fmt.Println(hash.Has("name")) // true
 }
 ```
 

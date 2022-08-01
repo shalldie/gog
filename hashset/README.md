@@ -7,8 +7,6 @@
 
 Generic hashset of Golang. Golang 泛型 hashset 实现。
 
-[English](./README.md) | [中文](./README.zh-CN.md)
-
 Need v1.18+
 
 <details><summary>Example</summary>

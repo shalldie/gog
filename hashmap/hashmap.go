@@ -1,30 +1,50 @@
 package hashmap
 
+import "github.com/shalldie/gog/gs"
+
 type HashMap[K comparable, V comparable] struct {
-	m map[K]V
+	// internal map
+	M map[K]V
+	// sorted keys
+	SK []K
 }
 
 func New[K comparable, V comparable]() *HashMap[K, V] {
 	return &HashMap[K, V]{
-		m: make(map[K]V),
+		M: make(map[K]V),
 	}
 }
 
+// 是否需要排序，通过初始化时候的 SK 来决定
+func (hm *HashMap[K, V]) isSorted() bool {
+	return hm.SK != nil
+}
+
 func (hm *HashMap[K, V]) Has(key K) bool {
-	_, has := hm.m[key]
+	_, has := hm.M[key]
 	return has
 }
 
 func (hm *HashMap[K, V]) Set(key K, val V) {
-	hm.m[key] = val
+	// 如果需要排序，在 sorted keys 中添加该项
+	if hm.isSorted() && !hm.Has(key) {
+		hm.SK = append(hm.SK, key)
+	}
+	hm.M[key] = val
 }
 
 func (hm *HashMap[K, V]) Get(key K) V {
-	return hm.m[key]
+	return hm.M[key]
 }
 
 func (hm *HashMap[K, V]) Delete(key K) {
-	delete(hm.m, key)
+	// 如果需要排序，去掉 sorted keys 中的该项
+	if hm.isSorted() {
+		hm.SK = gs.Filter(hm.SK, func(item K, index int) bool {
+			return item == key
+		})
+	}
+	delete(hm.M, key)
 }
 
 func (hm *HashMap[K, V]) Keys() []K {
@@ -48,23 +68,38 @@ func (hm *HashMap[K, V]) Values() []V {
 }
 
 func (hm *HashMap[K, V]) Size() int {
-	return len(hm.m)
+	return len(hm.M)
 }
 
 func (hm *HashMap[K, V]) ForEach(action func(K, V)) {
-	for key, val := range hm.m {
+	// 如果需要排序
+	if hm.isSorted() {
+		for _, key := range hm.SK {
+			action(key, hm.Get(key))
+		}
+		return
+	}
+	// 乱序
+	for key, val := range hm.M {
 		action(key, val)
 	}
 }
 
 func (hm *HashMap[K, V]) Clear() {
-	hm.m = make(map[K]V)
+	hm.M = make(map[K]V)
+	if hm.isSorted() {
+		hm.SK = make([]K, 0)
+	}
 }
 
 func (hm *HashMap[K, V]) Clone() *HashMap[K, V] {
-	newhashmap := New[K, V]()
+	newhm := New[K, V]()
+
+	// newhashmap.SK = hm.SK // in child struct
+
 	hm.ForEach(func(k K, v V) {
-		newhashmap.Set(k, v)
+		newhm.Set(k, v)
 	})
-	return newhashmap
+
+	return newhm
 }
