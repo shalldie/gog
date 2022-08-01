@@ -11,11 +11,12 @@ Need v1.18+
 
 ## Index
 
-|        PKG         | DESCRIPTION                                                            |
-| :----------------: | :--------------------------------------------------------------------- |
-|      [gs](gs)      | Generic functions for Slice of Golang. <br>Golang 切片的常用泛型方法。 |
-| [hashmap](hashmap) | Generic hashmap of Golang. <br>Golang 泛型 hashmap 实现。              |
-| [hashset](hashset) | Generic hashset of Golang. <br>Golang 泛型 hashset 实现。              |
+|          PKG           | DESCRIPTION                                                            |
+| :--------------------: | :--------------------------------------------------------------------- |
+|        [gs](gs)        | Generic functions for Slice of Golang. <br>Golang 切片的常用泛型方法。 |
+|   [hashmap](hashmap)   | Generic hashmap of Golang. <br>Golang 泛型 hashmap 实现。              |
+|   [hashset](hashset)   | Generic hashset of Golang. <br>Golang 泛型 hashset 实现。              |
+| [sortedmap](sortedmap) | Generic sortedmap of Golang. <br>Golang 泛型 sortedmap 实现。          |
 
 ## License
 
