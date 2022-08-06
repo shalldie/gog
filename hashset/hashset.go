@@ -6,12 +6,12 @@ import (
 )
 
 type HashSet[K comparable, V comparable] struct {
-	hashmap.HashMap[K, V]
+	*hashmap.HashMap[K, V]
 }
 
 func New[K comparable, V comparable]() *HashSet[K, V] {
 	return &HashSet[K, V]{
-		*hashmap.New[K, V](),
+		hashmap.New[K, V](),
 	}
 }
 

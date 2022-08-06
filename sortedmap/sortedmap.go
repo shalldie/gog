@@ -5,12 +5,12 @@ import (
 )
 
 type SortedMap[K comparable, V comparable] struct {
-	hashmap.HashMap[K, V]
+	*hashmap.HashMap[K, V]
 }
 
 func New[K comparable, V comparable]() *SortedMap[K, V] {
 	return &SortedMap[K, V]{
-		HashMap: hashmap.HashMap[K, V]{
+		HashMap: &hashmap.HashMap[K, V]{
 			M:  make(map[K]V),
 			SK: []K{},
 		},
